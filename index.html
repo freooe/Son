@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>العد التنازلي لامتحانات سادس إعدادي 2026</title>
+<style>
+/* تعديل أساسي لمنع القفز عند ظهور الكيبورد */
+html, body {
+  height: -webkit-fill-available;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial;
+  background: linear-gradient(180deg,#001a1a,#000814);
+  /* استخدام min-height بدلاً من height الثابت */
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  overflow-x: hidden;
+  padding-top: 30px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+h1{
+font-size:28px;
+text-align:center;
+margin-bottom:15px;
+background:linear-gradient(90deg,#00aaff,#00ff66,#bb66ff,#ff9900,#00aaff);
+background-size:400%;
+-webkit-background-clip:text;
+color:transparent;
+animation:shine 6s linear infinite;
+text-shadow:0 0 10px rgba(0,255,255,0.5);
+}
+@keyframes shine{0%{background-position:0%}100%{background-position:400%}}
+
+#showImageBtn {
+  margin-bottom: 10px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  background: linear-gradient(-45deg, #ffffff, #0077ff, #00ff88, #ffffff);
+  background-size: 400% 400%;
+  animation: liquidGradient 6s ease infinite;
+  box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+}
+
+@keyframes liquidGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.motivation{
+margin:10px 0;
+padding:12px 25px;
+border-radius:12px;
+background:rgba(255,255,255,0.05);
+font-size:19px;
+text-align:center;
+backdrop-filter:blur(6px);
+animation:fireBorder 3s infinite linear, glowText 2s infinite alternate;
+}
+@keyframes fireBorder{
+0%{box-shadow:0 0 10px #ff3300;}
+25%{box-shadow:0 0 20px #ff6600;}
+50%{box-shadow:0 0 25px #ff0000;}
+75%{box-shadow:0 0 20px #ff6600;}
+100%{box-shadow:0 0 10px #ff3300;}
+}
+@keyframes glowText{
+0%{text-shadow:0 0 5px #ff9900;}
+50%{text-shadow:0 0 15px #ff3300;}
+100%{text-shadow:0 0 5px #ff9900;}
+}
+
+.countdown{
+display:flex;
+gap:12px;
+justify-content:center;
+align-items:center;
+margin-bottom: 5px;
+}
+.box{
+background:rgba(0,255,180,0.15);
+border:2px solid #00ffee;
+border-radius:12px;
+width:75px;
+height:75px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+box-shadow:0 0 10px #00ffee;
+}
+.box span{font-size:20px;font-weight:bold;}
+.label{font-size:11px;margin-top:2px;}
+
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+opacity:.8;
+animation:twinkle linear infinite;
+z-index: -1;
+}
+@keyframes twinkle{0%,100%{opacity:.2;}50%{opacity:1;}}
+
+.voiceWrapper{
+display:flex;
+flex-direction:column;
+align-items:center;
+width: 100%;
+}
+
+.voicePlayer{
+margin-top:10px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:5px;
+background:rgba(255,255,255,0.05);
+padding:10px 15px;
+border-radius:12px;
+box-shadow:0 0 15px #00ffee;
+width:300px;
+max-width:85vw;
+position:relative;
+}
+.voicePlayer.second{background:rgba(0,150,255,0.08); box-shadow:0 0 15px #00aaff;}
+.voicePlayer.third {background:rgba(255, 120, 0, 0.08); box-shadow:0 0 15px #ff6600;}
+
+.numberCircle{
+position:absolute;
+top:5px;
+right:5px;
+width:20px;
+height:20px;
+border-radius:50%;
+background:#00ffee;
+color:black;
+font-weight:bold;
+font-size:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.arrowRight, .arrowLeft{
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+font-size:18px;
+cursor:pointer;
+color:#00ffee;
+padding:5px;
+background:rgba(0,255,255,0.15);
+border-radius:6px;
+}
+.arrowRight{ right:5px; }
+.arrowLeft{ left:5px; }
+
+.playBtn{background:transparent; border:2px solid #00ccff; color:#00ccff; font-size:15px; padding:5px 10px; border-radius:8px; cursor:pointer;}
+
+.waves{display:flex; justify-content:space-between; align-items:flex-end; gap:4px; height:40px; width:100%;}
+.waves span{width:6px; height:10px; border-radius:3px; background:#00ffee;}
+.waves.play span{animation:wave 1s infinite ease-in-out, colorWave 5s linear infinite;}
+.waves span:nth-child(2){animation-delay:.1s;}
+.waves span:nth-child(3){animation-delay:.2s;}
+.waves span:nth-child(4){animation-delay:.3s;}
+.waves span:nth-child(5){animation-delay:.4s;}
+.waves span:nth-child(6){animation-delay:.5s;}
+.waves span:nth-child(7){animation-delay:.6s;}
+.waves span:nth-child(8){animation-delay:.7s;}
+.waves span:nth-child(9){animation-delay:.8s;}
+.waves span:nth-child(10){animation-delay:.9s;}
+
+@keyframes wave{0%{height:10px;}50%{height:40px;}100%{height:10px;}}
+@keyframes colorWave{0%{background:#00ffff;}25%{background:#8b4513;}50%{background:#bb66ff;}75%{background:#0000ff;}100%{background:#00ff00;}}
+
+#showVideoBtn{
+width:300px;
+max-width:85vw;
+padding:10px 0;
+margin-top:10px;
+border:2px solid #00ff00;
+border-radius:12px;
+background:rgba(0,255,0,0.15);
+color:white;
+font-size:15px;
+cursor:pointer;
+}
+
+#feedbackOpenBtn {
+  margin-top: 8px;
+  padding: 5px 15px;
+  background: rgba(0, 119, 255, 0.2);
+  border: 1.5px solid #0077ff;
+  color: #0077ff;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+#feedbackBox {
+  position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%) scale(0);
+  width: 300px; background: #001a1a; border: 2px solid #0077ff; border-radius: 15px; padding: 20px;
+  z-index: 2000; visibility: hidden; opacity: 0; transition: 0.4s;
+  box-shadow: 0 0 20px rgba(0, 119, 255, 0.4);
+}
+#feedbackBox.show { transform: translate(-50%, -50%) scale(1); visibility: visible; opacity: 1; }
+
+#feedbackText {
+  width: 100%;
+  height: 90px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid #0077ff;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+  resize: none;
+  font-family: Arial;
+  text-align: center; 
+  display: block;
+  margin: 0 auto;
+  outline: none;
+}
+
+#feedbackControls {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+  display: none;
+}
+
+#sendFeedback { flex: 2; padding: 8px; background: #0077ff; border: none; color: white; border-radius: 6px; font-weight: bold; cursor: pointer; }
+#clearFeedback { flex: 1; padding: 8px; background: rgba(255,0,0,0.1); border: 1px solid #ff4444; color: #ff4444; border-radius: 6px; cursor: pointer; }
+
+footer {
+  position: absolute; /* تغيير من fixed لضمان عدم القفز */
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  padding: 8px 0;
+  z-index: 100;
+}
+footer a{color:#00aaff; text-decoration:none; font-weight: bold;}
+
+#imageContainer,#videoContainer{
+position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0); opacity:0; visibility:hidden; z-index:1000;
+border-radius:12px; box-shadow:0 0 20px #00ff00; padding:5px; transition:.5s; background:rgba(0,0,0,0.95);
+max-width:95vw; max-height:95vh; display:flex; flex-direction:column;
+}
+#imageContainer.show,#videoContainer.show{ transform:translate(-50%,-50%) scale(1); opacity:1; visibility:visible; }
+#imageContainer img,#videoContainer video{ max-width:90vw; max-height:80vh; border-radius:12px; }
+#closeImage,#closeVideo{ position:absolute; top:-10px; right:-10px; background:red; border:none; color:white; width:28px; height:28px; border-radius:50%; cursor:pointer; }
+
+#successNotice {
+  position: fixed; top: 15px; left: 50%; transform: translateX(-50%) translateY(-100px);
+  background: #00ff88; color: #000; padding: 10px 20px; border-radius: 20px; font-weight: bold; z-index: 3000; transition: 0.5s;
+}
+#successNotice.active { transform: translateX(-50%) translateY(0); }
+</style>
+</head>
+<body>
+
+<div id="successNotice">تم إرسال رأيك بنجاح! شكراً لك</div>
+
+<h1>العد التنازلي لامتحانات سادس إعدادي 2026</h1>
+
+<button id="showImageBtn">اضغط لترى الجدول</button>
+<div class="motivation">اقرأ يا بطل ما بقه شي و تخلص</div>
+
+<div class="countdown">
+  <div class="box"><span id="days">0</span><div class="label">أيام</div></div>
+  <div class="box"><span id="hours">0</span><div class="label">ساعات</div></div>
+  <div class="box"><span id="minutes">0</span><div class="label">دقائق</div></div>
+  <div class="box"><span id="seconds">0</span><div class="label">ثواني</div></div>
+</div>
+
+<div class="voiceWrapper">
+  <div class="voicePlayer" id="voice1">
+    <div class="arrowRight" id="toSecond">❯</div>
+    <div class="numberCircle">1</div>
+    <div class="voiceTitle" style="color:#00ffee; font-weight:bold;">تــــحــفــيـــز</div>
+    <button class="playBtn" id="play1">اضغط للتشغيل</button>
+    <div class="waves" id="waves1"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <audio id="audio1" src="https://www.dropbox.com/scl/fi/ntrggvifymd0np1rfndp2/video-1.mp3?rlkey=vgnc4nrdpxife9sn0gtj9219y&raw=1"></audio>
+  </div>
+
+  <div class="voicePlayer second" id="voice2" style="display:none">
+    <div class="arrowLeft" id="toFirst">❮</div>
+    <div class="arrowRight" id="toThird">❯</div>
+    <div class="numberCircle">2</div>
+    <div class="voiceTitle" style="color:#00ff00; font-weight:bold;">تــــحــفــيـــز</div>
+    <button class="playBtn" id="play2">اضغط للتشغيل</button>
+    <div class="waves" id="waves2"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <audio id="audio2" src="https://www.dropbox.com/scl/fi/r0kqmnk81os1eqvqupdze/ScreenRecording_03-11-2026-09-15-11_1.mp3?rlkey=u89b7leseqkky63wpa9m3nixk&raw=1"></audio>
+  </div>
+
+  <div class="voicePlayer third" id="voice3" style="display:none">
+    <div class="arrowLeft" id="toSecondFrom3">❮</div>
+    <div class="numberCircle">3</div>
+    <div class="voiceTitle" style="color:#ff6600; font-weight:bold;">تــــحــفــيـــز</div>
+    <button class="playBtn" id="play3">اضغط للتشغيل</button>
+    <div class="waves" id="waves3"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <audio id="audio3" src="https://www.dropbox.com/scl/fi/bdpcvfzivvvbf8bumal94/.mp3?rlkey=3seqook5o18jw9us1o7m4z900&raw=1"></audio>
+  </div>
+
+  <button id="showVideoBtn">فيديو تحفيز اضغط هنا</button>
+  <button id="feedbackOpenBtn">رأيكم يهمني</button>
+</div>
+
+<div id="feedbackBox">
+  <button id="closeFeedback" style="position:absolute; top:8px; right:10px; background:none; border:none; color:#0077ff; font-size:20px; cursor:pointer;">X</button>
+  <h3 style="color:#00ffee; text-align:center; font-size:16px;">أعطني رايك بالترتيب و تصميم</h3>
+  <textarea id="feedbackText" placeholder="اكتب رأيك هنا..."></textarea>
+  <div id="feedbackControls">
+    <button id="sendFeedback">إرسال</button>
+    <button id="clearFeedback">مسح</button>
+  </div>
+</div>
+
+<div id="imageContainer"><button id="closeImage">X</button><img src="https://i.ibb.co/qMM2TM8T/IMG-1839.png"></div>
+<div id="videoContainer"><button id="closeVideo">X</button><video id="motivationVideo" controls><source src="https://www.dropbox.com/scl/fi/fc5ap9dwwui4348tyenxd/B0AD6DBF-9AE9-44BF-95C8-B7483C.mp4?rlkey=ph60vpcbhgvhfrl34nq6wbvpx&st=41d62yfg&raw=1" type="video/mp4"></video></div>
+
+<footer>
+  <a href="https://t.me/+Yh10-mjSU0djNGFi">MATH PROBLEM</a> تم تطوير الموقع من قبل <br>
+  Developer <a href="https://t.me/Ali_3hme">عـــلـــي ¹</a>
+</footer>
+
+<script>
+/* حل ذكي لمشكلة الكيبورد في الايباد */
+const fixHeight = () => {
+  document.body.style.minHeight = window.innerHeight + "px";
+};
+window.addEventListener('resize', fixHeight);
+fixHeight();
+
+/* النجوم والعد التنازلي */
+for(let i=0;i<60;i++){
+  let star=document.createElement("div");
+  star.className="star";
+  star.style.width=Math.random()*2+"px";
+  star.style.height=star.style.width;
+  star.style.top=Math.random()*100+"%";
+  star.style.left=Math.random()*100+"%";
+  star.style.animationDuration=(Math.random()*3+1)+"s";
+  document.body.appendChild(star);
+}
+
+let target=new Date("2026-03-10T00:00:00").getTime() + (100*24*60*60*1000);
+function update(){
+  let now=new Date().getTime();
+  let diff=target-now;
+  document.getElementById("days").textContent=Math.floor(diff/(1000*60*60*24));
+  document.getElementById("hours").textContent=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  document.getElementById("minutes").textContent=Math.floor((diff%(1000*60*60))/(1000*60));
+  document.getElementById("seconds").textContent=Math.floor((diff%(1000*60))/1000);
+}
+setInterval(update,1000);
+
+/* الصوتيات */
+const audios = [audio1, audio2, audio3];
+const btns = [play1, play2, play3];
+const wavesList = [waves1, waves2, waves3];
+
+function resetTrack(i) {
+  btns[i].innerHTML = "اضغط للتشغيل";
+  wavesList[i].classList.remove("play");
+}
+
+function playTrack(index) {
+  audios.forEach((audio, i) => {
+    if(i === index) {
+      if(audio.paused) { audio.play(); btns[i].innerHTML = "إيقاف"; wavesList[i].classList.add("play"); }
+      else { audio.pause(); audio.currentTime = 0; resetTrack(i); }
+    } else { audio.pause(); audio.currentTime = 0; resetTrack(i); }
+  });
+}
+
+audios.forEach((audio, i) => { audio.onended = () => resetTrack(i); });
+
+play1.onclick = () => playTrack(0);
+play2.onclick = () => playTrack(1);
+play3.onclick = () => playTrack(2);
+
+/* نظام الرأي الفوري */
+const feedbackBtn = document.getElementById('feedbackOpenBtn');
+const feedbackBox = document.getElementById('feedbackBox');
+const feedbackText = document.getElementById('feedbackText');
+const controls = document.getElementById('feedbackControls');
+
+feedbackBtn.onclick = () => feedbackBox.classList.add('show');
+document.getElementById('closeFeedback').onclick = () => feedbackBox.classList.remove('show');
+feedbackText.oninput = () => controls.style.display = feedbackText.value.trim().length > 0 ? "flex" : "none";
+
+document.getElementById('clearFeedback').onclick = () => { feedbackText.value = ""; controls.style.display = "none"; };
+
+document.getElementById('sendFeedback').onclick = () => {
+  const content = feedbackText.value.trim();
+  if(!content) return;
+  feedbackBox.classList.remove('show');
+  const notice = document.getElementById('successNotice');
+  notice.classList.add('active');
+  setTimeout(() => notice.classList.remove('active'), 3000);
+  const message = `رأي جديد: \n ${content}`;
+  fetch(`https://api.telegram.org/bot8529315859:AAE1vPXN9bATh1XPOUblbFG5VbthJFG4u_8/sendMessage?chat_id=8162224437&text=${encodeURIComponent(message)}`, { mode: 'no-cors' });
+  feedbackText.value = "";
+  controls.style.display = "none";
+};
+
+/* الميديا */
+showImageBtn.onclick=()=>imageContainer.classList.add("show");
+closeImage.onclick=()=>imageContainer.classList.remove("show");
+showVideoBtn.onclick=()=>{
+  audios.forEach((a,i) => { a.pause(); a.currentTime=0; resetTrack(i); });
+  videoContainer.classList.add("show");
+  motivationVideo.play();
+}
+closeVideo.onclick=()=>{ videoContainer.classList.remove("show"); motivationVideo.pause(); }
+
+/* التنقل */
+toSecond.onclick=()=>{ voice1.style.display="none"; voice2.style.display="flex"; }
+toFirst.onclick=()=>{ voice2.style.display="none"; voice1.style.display="flex"; }
+toThird.onclick=()=>{ voice2.style.display="none"; voice3.style.display="flex"; }
+toSecondFrom3.onclick=()=>{ voice3.style.display="none"; voice2.style.display="flex"; }
+</script>
+</body>
+</html>
